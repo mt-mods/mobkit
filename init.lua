@@ -518,10 +518,10 @@ function mobkit.drive_to_pos(self,tpos,speed,turn_rate,dist)
 	return false
 end
 
-function mobkit.timer(self,s) -- returns true approx every s seconds
-	local t1 = floor(self.time_total)
-	local t2 = floor(self.time_total+self.dtime)
-	if t2>t1 and t2%s==0 then return true end
+function mobkit.timer(self,s) -- returns true approx every interval
+	local t1 = floor(self.time_total/s)
+	local t2 = floor((self.time_total+self.dtime)/s)
+	if t2>t1 then return true end
 end
 
 -- Memory functions. 
