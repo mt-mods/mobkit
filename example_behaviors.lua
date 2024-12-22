@@ -585,9 +585,9 @@ function mobkit.hq_attack(self,prty,tgtobj)
 				return true
 			else
 				mobkit.lq_turn2pos(self,tpos)
-				local height = tgtobj:is_player() and 0.35 or tgtobj:get_luaentity().height*0.6
-				if tpos.y+height>pos.y then 
-					mobkit.lq_jumpattack(self,tpos.y+height-pos.y,tgtobj) 
+				local midpoint = mobkit.get_box_height(tgtobj) * 0.5
+				if tpos.y+midpoint>pos.y then 
+					mobkit.lq_jumpattack(self,tpos.y+midpoint-pos.y,tgtobj) 
 				else
 					mobkit.lq_dumbwalk(self,mobkit.pos_shift(tpos,{x=random()-0.5,z=random()-0.5}))
 				end
