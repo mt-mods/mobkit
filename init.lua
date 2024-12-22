@@ -411,13 +411,16 @@ function mobkit.get_box_displace_cols(pos,box,vec,dist)
 end
 
 function mobkit.get_box_height(thing)
-	if type(thing) == 'table' then thing = thing.object end
+	if not thing then return nil end
+	if type(thing) == 'table' then
+		return thing.height or mobkit.get_box_height(thing.object)
+	end
 	local colbox = thing:get_properties().collisionbox
 	local height
-	if colbox then height = colbox[5]-colbox[2] 
+	if colbox then height = colbox[5] - colbox[2]
 	else height = 0.1 end
 	
-	return height > 0 and height or 0.1
+	return height or 0.1
 end
 
 function mobkit.is_alive(thing)		-- thing can be luaentity or objectref.
