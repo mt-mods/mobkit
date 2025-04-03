@@ -855,17 +855,3 @@ end
 
 -- load example behaviors
 dofile(minetest.get_modpath("mobkit") .. "/example_behaviors.lua")
-
-minetest.register_on_mods_loaded(function()
-	local mbkfuns = ''
-	for n,f in pairs(mobkit) do
-		if type(f) == 'function' then
-			mbkfuns = mbkfuns .. n .. string.split(minetest.serialize(f),'.lua')[2] or ''
-		end
-	end
-	local crc = minetest.sha1(mbkfuns)
---  dbg(crc)
---	if crc ~= 'a061770008fe9ecf8e1042a227dc3beabd10e481' then
---		minetest.log("error","Mobkit namespace inconsistent, has been modified by other mods.")
---	end
-end)
