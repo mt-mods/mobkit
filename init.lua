@@ -341,7 +341,7 @@ function mobkit.get_box_intersect_cols(pos,box)
 	local pmin = {x=floor(pos.x+box[1]+0.5),z=floor(pos.z+box[3]+0.5)}
 	local pmax = {x=floor(pos.x+box[4]+0.5),z=floor(pos.z+box[6]+0.5)}
 	
-	result= {}
+	local result = {}
 	for x=pmin.x,pmax.x do
 		for z=pmin.z,pmax.z do
 			table.insert(result,{x=x,z=z})
