@@ -340,7 +340,7 @@ function mobkit.rot_to_dir(rot)
 
 function mobkit.is_alive(thing)
 	-- non essential, checks if thing exists in the world and is alive
-	-- makes an assumption that luaentities are considered dead when their hp < 100
+	-- makes an assumption that luaentities are considered dead when their hp <= 0
 	-- thing can be luaentity or objectref.
 	-- used for stored luaentities and objectrefs
 
@@ -558,3 +558,4 @@ mobkit.friction = 0.4 	-- inert entities will slow down when in contact with the
 self.dtime				-- for convenience, dtime as passed to currently executing on_step()
 self.isonground			-- true if y velocity is 0 for at least two succesive steps
 self.isinliquid			-- true if feet submerged in liquid type=source
+
