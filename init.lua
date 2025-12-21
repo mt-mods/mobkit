@@ -684,6 +684,8 @@ function mobkit.physics(self)
 	
 	-- bounciness
 	if self.springiness and self.springiness > 0 then
+
+		local colinfo = self.colinfo
 		
 		if colinfo and colinfo.collides then
 			for _,c in ipairs(colinfo.collisions) do
