@@ -558,4 +558,3 @@ mobkit.friction = 0.4 	-- inert entities will slow down when in contact with the
 self.dtime				-- for convenience, dtime as passed to currently executing on_step()
 self.isonground			-- true if y velocity is 0 for at least two succesive steps
 self.isinliquid			-- true if feet submerged in liquid type=source
-
