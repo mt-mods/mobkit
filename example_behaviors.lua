@@ -699,7 +699,7 @@ local function aqua_radar_dumb(pos,yaw,range,reverse)
 			ffrom, fto, fstep = 1,3,1
 		end
 		for i=ffrom, fto, fstep  do
-			local ok,h = okpos(mobkit.pos_translate2d(pos,yaw+i,range))
+			ok,h = okpos(mobkit.pos_translate2d(pos,yaw+i,range))
 			if ok then return yaw+i,h end
 			ok,h = okpos(mobkit.pos_translate2d(pos,yaw-i,range))
 			if ok then return yaw-i,h end
@@ -808,9 +808,9 @@ function mobkit.hq_aqua_attack(self,prty,tgtobj,speed)
 		end
 
 		local tpos = tgtobj:get_pos()
-		local tyaw=minetest.dir_to_yaw(vector.direction(pos,tpos))	
+		tyaw=minetest.dir_to_yaw(vector.direction(pos,tpos))	
 		mobkit.turn2yaw(self,tyaw,3)
-		local yaw = self.object:get_yaw()
+		yaw = self.object:get_yaw()
 		if mobkit.timer(self,1) then
 			if not mobkit.is_in_deep(tgtobj) then return true end
 			local vel = self.object:get_velocity()
