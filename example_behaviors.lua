@@ -166,11 +166,11 @@ function mobkit.get_next_waypoint_fast(self,tpos,nogopos)
 
 		for i=1,4 do
 			-- scan left
-			height, pos2, liq = mobkit.is_neighbor_node_reachable(self,mobkit.neighbor_shift(neighbor,-i))
-			if height and not liq then return height,pos2 end
+			height, pos2, liquidflag = mobkit.is_neighbor_node_reachable(self,mobkit.neighbor_shift(neighbor,-i))
+			if height and not liquidflag then return height,pos2 end
 			-- scan right
-			height, pos2, liq = mobkit.is_neighbor_node_reachable(self,mobkit.neighbor_shift(neighbor,i))
-			if height and not liq then return height,pos2 end
+			height, pos2, liquidflag = mobkit.is_neighbor_node_reachable(self,mobkit.neighbor_shift(neighbor,i))
+			if height and not liquidflag then return height,pos2 end
 		end
 	end
 end
