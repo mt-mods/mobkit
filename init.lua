@@ -394,8 +394,8 @@ function mobkit.get_box_displace_cols(pos,box,vec,dist)
 	end
 	
 			-- traverse z
-	local zsgn = sign(vec.z)
-	local xsgn = sign(xoff)
+	zsgn = sign(vec.z)
+	xsgn = sign(xoff)
 	index=0
 	for z = floor(fpos.z + 0.5)+zsgn*0.5, fpos.z+vec.z, zsgn do
 		index=index+1
