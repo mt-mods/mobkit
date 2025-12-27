@@ -166,11 +166,11 @@ function mobkit.get_next_waypoint_fast(self,tpos,nogopos)
 
 		for i=1,4 do
 			-- scan left
-			height, pos2, liq = mobkit.is_neighbor_node_reachable(self,mobkit.neighbor_shift(neighbor,-i))
-			if height and not liq then return height,pos2 end
+			height, pos2, liquidflag = mobkit.is_neighbor_node_reachable(self,mobkit.neighbor_shift(neighbor,-i))
+			if height and not liquidflag then return height,pos2 end
 			-- scan right
-			height, pos2, liq = mobkit.is_neighbor_node_reachable(self,mobkit.neighbor_shift(neighbor,i))
-			if height and not liq then return height,pos2 end
+			height, pos2, liquidflag = mobkit.is_neighbor_node_reachable(self,mobkit.neighbor_shift(neighbor,i))
+			if height and not liquidflag then return height,pos2 end
 		end
 	end
 end
@@ -699,7 +699,7 @@ local function aqua_radar_dumb(pos,yaw,range,reverse)
 			ffrom, fto, fstep = 1,3,1
 		end
 		for i=ffrom, fto, fstep  do
-			local ok,h = okpos(mobkit.pos_translate2d(pos,yaw+i,range))
+			ok,h = okpos(mobkit.pos_translate2d(pos,yaw+i,range))
 			if ok then return yaw+i,h end
 			ok,h = okpos(mobkit.pos_translate2d(pos,yaw-i,range))
 			if ok then return yaw-i,h end
@@ -808,9 +808,9 @@ function mobkit.hq_aqua_attack(self,prty,tgtobj,speed)
 		end
 
 		local tpos = tgtobj:get_pos()
-		local tyaw=core.dir_to_yaw(vector.direction(pos,tpos))	
+		tyaw=core.dir_to_yaw(vector.direction(pos,tpos))	
 		mobkit.turn2yaw(self,tyaw,3)
-		local yaw = self.object:get_yaw()
+		yaw = self.object:get_yaw()
 		if mobkit.timer(self,1) then
 			if not mobkit.is_in_deep(tgtobj) then return true end
 			local vel = self.object:get_velocity()
