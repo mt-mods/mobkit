@@ -620,7 +620,12 @@ local function execute_queues(self)
 	if #self.hqueue > 0 then
 		local func = self.hqueue[1].func
 		if func(self) then
-			table.remove(self.hqueue,1)
+			for i, mini_table in pairs(self.hqueue) do
+                if mini_table.func == func then
+                    table.remove(self.hqueue, i)
+                    break
+                end
+            end
 			self.lqueue = {}
 		end
 	end
