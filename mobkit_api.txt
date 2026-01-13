@@ -394,6 +394,7 @@ function mobkit.drive_to_pos(self,tpos,speed,turn_rate,dist)
 This represents mob long term memory
 Warning: Stuff in memory is serialized, never try to remember objectrefs or tables referencing them
 or the engine will crash.
+!!! MEMORY IS REMEMBERED WHEN OBJECTS ARE UNLOADED, IF THE SERVER CRASHES THEN MEMORY WILL BE FORGOTTEN !!!
 
 function mobkit.remember(self,key,val)
 	-- premanently store a key, value pair
