@@ -726,7 +726,7 @@ end
 -- HQ behaviors
 
 function mobkit.hq_aqua_roam(self,prty,speed)
-	local tyaw = 0
+	local tyaw = self.object:get_yaw()
 	local init = true
 	local prvscanpos = {x=0,y=0,z=0}
 	local center = self.object:get_pos()
