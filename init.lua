@@ -12,13 +12,11 @@ mobkit.friction = 0.4 -- less is more
 local abs = math.abs
 local pi = math.pi
 local floor = math.floor
-local ceil = math.ceil
 local random = math.random
 local sqrt = math.sqrt
 local max = math.max
 local min = math.min
 local tan = math.tan
-local pow = math.pow
 
 local sign = function(x)
 	return (x < 0) and -1 or 1
@@ -71,8 +69,8 @@ function mobkit.get_stand_pos(thing)	-- thing can be luaentity or objectref.
 end	--]]
 
 function mobkit.get_stand_pos(thing) -- thing can be luaentity or objectref.
-	local pos = {}
-	local colbox = {}
+	local pos
+	local colbox
 	if type(thing) == "table" then
 		pos = thing.object:get_pos()
 		colbox = thing.object:get_properties().collisionbox
@@ -132,10 +130,8 @@ function mobkit.get_nodes_in_area(pos1, pos2, full)
 
 	repeat
 		x = x + sx
-		z = npos1.z - sz
 		repeat
 			z = z + sz
-			y = npos1.y - sy
 			repeat
 				y = y + sy
 
@@ -375,10 +371,8 @@ function mobkit.get_box_displace_cols(pos, box, vec, dist)
 	local result = { {} }
 	-- front facing corner pos and neighbors
 	local fpos = { pos.y }
-	local xpos = { pos.y }
-	local zpos = { pos.y }
-	local xoff = nil
-	local zoff = nil
+	local xoff
+	local zoff
 
 	if vec.x < 0 then
 		fpos.x = pos.x + box[1] -- frontmost corner's x
@@ -411,15 +405,16 @@ function mobkit.get_box_displace_cols(pos, box, vec, dist)
 			return result
 		end
 		result[index] = result[index] or {}
-		local zcomp = vec.x == 0 and 0 or fpos.z + (x - fpos.x) * vec.z / vec.x -- z component at the intersection of x and node edge
+		-- z component at the intersection of x and node edge
+		local zcomp = vec.x == 0 and 0 or fpos.z + (x - fpos.x) * vec.z / vec.x
 		for z = floor(zcomp + 0.5), floor(zcomp + zoff + 0.5), zsgn do
 			table.insert(result[index], { x = x + xsgn * 0.5, z = z })
 		end
 	end
 
 	-- traverse z
-	local zsgn = sign(vec.z)
-	local xsgn = sign(xoff)
+	zsgn = sign(vec.z)
+	xsgn = sign(xoff)
 	index = 0
 	for z = floor(fpos.z + 0.5) + zsgn * 0.5, fpos.z + vec.z, zsgn do
 		index = index + 1
@@ -516,7 +511,7 @@ function mobkit.animate(self, anim)
 		end
 		self._anim = anim
 
-		local aparms = {}
+		local aparms
 		if #self.animation[anim] > 0 then
 			aparms = self.animation[anim][random(#self.animation[anim])]
 		else
@@ -763,6 +758,7 @@ function mobkit.physics(self)
 
 	-- bounciness
 	if self.springiness and self.springiness > 0 then
+		local colinfo = self.colinfo
 		if colinfo and colinfo.collides then
 			for _, c in ipairs(colinfo.collisions) do
 				if c.old_velocity[c.axis] > 0.1 then
