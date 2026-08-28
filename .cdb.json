@@ -1,0 +1,14 @@
+{
+  "$schema": "https://content.luanti.org/api/cdb_schema/",
+  "title": "Mobkit",
+  "tags": ["mobs", "library"],
+  "type": "MOD",
+  "dev_state": "MAINTENANCE_ONLY",
+  "ai_disclosure": "NONE",
+  "license": "MIT",
+  "repo": "https://github.com/mt-mods/mobkit",
+  "issue_tracker": "https://github.com/mt-mods/mobkit/issues/new/choose/",
+  "website": "https://mt-mods.github.io/",
+  "short_description": "Entity API",
+  "long_description": "Lua API simplifying the process of creating complex entities, mobs and NPC's. See [API.md](https://github.com/mt-mods/mobkit/blob/master/API.md) inside the package for details. See this mod: [wildlife](https://content.luanti.org/packages/Termos/wildlife/) for usage example."
+}
