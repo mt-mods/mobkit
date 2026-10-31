@@ -125,13 +125,14 @@ function mobkit.get_nodes_in_area(pos1, pos2, full)
 	local sy = (pos2.y < pos1.y) and -1 or 1
 
 	local x = npos1.x - sx
-	local z = npos1.z - sz
-	local y = npos1.y - sy
+	local z, y
 
 	repeat
 		x = x + sx
+		z = npos1.z - sz
 		repeat
 			z = z + sz
+			y = npos1.y - sy
 			repeat
 				y = y + sy
 
